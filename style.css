@@ -2,6 +2,7 @@ html, body {
     font-family: 'Dongle', sans-serif;
     margin: 0;
     padding: 0;
+    cursor: none; /* Hide default cursor */
   }
   
   .navbar {
@@ -56,6 +57,80 @@ html, body {
     opacity: 0.8;
     user-select: none;
     text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
+  
+  /* English layer - visible by default */
+  .english-layer {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Japanese layer - positioned over English layer but hidden */
+  .japanese-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    visibility: hidden; /* Hidden by default */
+  }
+  
+  /* The glass cursor */
+  .glass-cursor {
+    position: fixed;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+    background: rgba(0, 0, 50, 0.1);
+    box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
+    backdrop-filter: none; /* Set dynamically in JS */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+  }
+  
+  /* Clipping mask for text visibility */
+  .clip-area {
+    position: fixed;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 210;
+    overflow: hidden;
+  }
+  
+  /* Clone of Japanese text visible in cursor */
+  .japanese-clone {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80px; /* Match the width of the text container */
+}
+  
+  /* Mask for hiding English text in cursor area */
+  .english-mask {
+    position: fixed;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: black;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    mix-blend-mode: exclusion;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   
   :root {
