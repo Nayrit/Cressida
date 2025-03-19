@@ -4,23 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cressida</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+  <!-- Font Awesome for mobile menu toggle -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="work.html" class="nav-link">Work</a>
-    <a href="services.html" class="nav-link">Services</a>
-    <a href="team.html" class="nav-link">Team</a>
-    <a href="contact.html" class="nav-link">Contact Us</a>
-  </nav>
-
-  <!-- Logo -->
-  <a href="/" class="logo">
-    <img src="cressida.png" alt="Logo">
-  </a>
+  <!-- Header Container that holds both logo and navbar -->
+  <div class="header-container">
+    <!-- Logo -->
+    <a href="/" class="logo">
+      <img src="cressida.png" alt="Logo">
+    </a>
+    
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-column">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link">Work</a>
+          <a href="services.html" class="nav-link">Services</a>
+        </div>
+        <div class="nav-column">
+          <a href="team.html" class="nav-link">Team</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-column">
+          <a href="story.html" class="nav-link">Story</a>
+          <a href="inspiration.html" class="nav-link">Inspiration</a>
+        </div>
+      </div>
+    </nav>
+  </div>
 
   <!-- Glass cursor elements -->
   <div class="glass-cursor"></div>
@@ -30,10 +53,10 @@
   <!-- Dual language text container -->
   <div class="text-container">
     <!-- English text layer (visible by default) -->
-    <div class="english-layer">Cressida is on, Baby</div>
+    <div class="english-layer">Where Technology Meets Art</div>
     
-    <!-- Japanese text layer (hidden) -->
-    <div class="japanese-layer">ক্রেসিডা চালু আছে, সোনা</div>
+    <!-- Japanese text layer (hidden by default) -->
+    <div class="japanese-layer">We Bring Your Vision Into Reality</div>
   </div>
 
   <div class="gradient-bg">
@@ -61,6 +84,8 @@
     <div class="grain"></div>
   </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
