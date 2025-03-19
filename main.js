@@ -66,19 +66,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Glass cursor and dual language text effect
+    // Glass cursor and dual language image effect
     const cursor = document.querySelector('.glass-cursor');
     const clipArea = document.querySelector('.clip-area');
     const englishMask = document.querySelector('.english-mask');
-    const japaneseLayer = document.querySelector('.japanese-layer');
     const textContainer = document.querySelector('.text-container');
     const englishLayer = document.querySelector('.english-layer');
-
-    // Create a clone of Japanese text for the cursor
+    const japaneseLayer = document.querySelector('.japanese-layer');
+    
+    // Get the Japanese image source
+    const japaneseImage = japaneseLayer.querySelector('img');
+    const englishImage = englishLayer.querySelector('img');
+    
+    // Keep Japanese layer hidden but correctly positioned
+    japaneseLayer.style.visibility = 'hidden';
+    japaneseLayer.style.opacity = '0';
+    
+    // Create a clone of Japanese image for the cursor
     const japaneseClone = document.createElement('div');
     japaneseClone.className = 'japanese-clone';
-    japaneseClone.innerHTML = japaneseLayer.innerHTML;
+    
+    const cloneImage = document.createElement('img');
+    cloneImage.src = japaneseImage.src;
+    cloneImage.alt = japaneseImage.alt;
+    cloneImage.style.width = japaneseImage.offsetWidth + 'px';
+    cloneImage.style.height = 'auto';
+    
+    japaneseClone.appendChild(cloneImage);
     clipArea.appendChild(japaneseClone);
+    
+    // Make sure the clone is visible
+    japaneseClone.style.visibility = 'visible';
+    japaneseClone.style.opacity = '1';
 
     // Function to update all elements based on mouse position
     function updateCursorPosition(x, y) {
@@ -91,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.left = x + 'px';
         cursor.style.top = y + 'px';
         
-        // Position clip area for Japanese text
+        // Position clip area for Japanese image
         clipArea.style.width = `${cursorSize}px`;
         clipArea.style.height = `${cursorSize}px`;
         clipArea.style.left = x + 'px';
         clipArea.style.top = y + 'px';
         
-        // Position mask to hide English text in cursor area
+        // Position mask to hide English image in cursor area
         englishMask.style.width = `${cursorSize}px`;
         englishMask.style.height = `${cursorSize}px`;
         englishMask.style.left = x + 'px';
@@ -109,23 +128,38 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Calculate text container boundaries
         const textRect = textContainer.getBoundingClientRect();
+        const japaneseImageRect = japaneseImage.getBoundingClientRect();
+        const englishImageRect = englishImage.getBoundingClientRect();
         
-        // Position Japanese clone text relative to its original position
-        const japaneseClone = document.querySelector('.japanese-clone');
+        // Get the offset between cursor position and the top-left corner of textContainer
+        const offsetX = x - textRect.left;
+        const offsetY = y - textRect.top;
         
-        // Adjust font size based on screen width
-        if (window.innerWidth <= 576) {
-            japaneseClone.style.fontSize = '36px';
-        } else if (window.innerWidth <= 768) {
-            japaneseClone.style.fontSize = '50px';
-        } else {
-            japaneseClone.style.fontSize = '55.6242274413px';
-        }
+        // Calculate the position within the container as a percentage
+        const percentX = offsetX / textRect.width;
+        const percentY = offsetY / textRect.height;
         
-        japaneseClone.style.left = (textRect.left - x + textRect.width/2) + 'px';
-        japaneseClone.style.top = (textRect.top - y + textRect.height/2) + 'px';
+        // Position clone image to align perfectly with original position
+        const japaneseCloneImg = japaneseClone.querySelector('img');
         
-        // Check if the cursor is over the text area
+        // Match the size of the original Japanese image exactly
+        japaneseCloneImg.style.width = japaneseImage.offsetWidth + 'px';
+        japaneseCloneImg.style.height = japaneseImage.offsetHeight + 'px';
+        
+        // Calculate the position for the japaneseClone so that it looks properly aligned
+        // We need to position the image inside the clip area so that the part of the image
+        // that should be under the cursor is actually under the cursor
+        japaneseClone.style.width = japaneseImage.offsetWidth + 'px';
+        japaneseClone.style.height = japaneseImage.offsetHeight + 'px';
+        
+        // Position the clone so the correct part of the image shows through the cursor
+        const leftPos = -(offsetX - cursorSize/2);
+        const topPos = -(offsetY - cursorSize/2);
+        
+        japaneseClone.style.left = leftPos + 'px';
+        japaneseClone.style.top = topPos + 'px';
+        
+        // Check if the cursor is over the image area
         const isOverText = (
             x >= textRect.left &&
             x <= textRect.right &&
@@ -133,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             y <= textRect.bottom
         );
         
-        // Apply blur effect only when hovering over text
+        // Apply blur effect only when hovering over image
         cursor.style.backdropFilter = isOverText ? 'blur(30px)' : 'none';
     }
     
@@ -158,8 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCursorPosition(e.clientX, e.clientY);
     });
     
-    // Update cursor and text sizes when window is resized
+    // Update cursor and image sizes when window is resized
     window.addEventListener('resize', function() {
+        // Update japaneseClone image size on resize
+        const japaneseCloneImg = japaneseClone.querySelector('img');
+        japaneseCloneImg.style.width = japaneseImage.offsetWidth + 'px';
+        japaneseCloneImg.style.height = japaneseImage.offsetHeight + 'px';
+        
         const x = window.innerWidth / 2;
         const y = window.innerHeight / 2;
         updateCursorPosition(x, y);
