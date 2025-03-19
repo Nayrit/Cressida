@@ -1,295 +1,478 @@
+@font-face {
+  font-family: 'San Miguel';
+  src: url('fonts/san-miguel.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi-Light';
+  src: url('fonts/Satoshi-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
-    font-family: 'Dongle', sans-serif;
-    margin: 0;
-    padding: 0;
-    cursor: none; /* Hide default cursor */
+  font-family: 'San Miguel', sans-serif;
+  margin: 0;
+  padding: 0;
+  cursor: none; /* Hide default cursor */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Header container to manage logo and navbar positioning */
+.header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+}
+
+/* Logo positioning */
+.logo {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 10px;
+  margin-left: 10px; /* Add some left margin */
+}
+
+.logo img {
+  width: 200px; /* Adjust as needed */
+  height: auto;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: relative;
+  padding: 15px 20px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center; /* Center the navbar */
+  width: 100%; /* Take full width */
+  margin-right: 0; /* Remove right margin */
+}
+
+/* Column container inside navbar */
+.nav-container {
+  display: flex;
+  gap: 200px; /* Space between columns */
+  justify-content: center; /* Center the columns */
+  width: 100%; /* Take full width */
+}
+
+/* Each column in navbar */
+.nav-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+
+/* Navbar links */
+.nav-link {
+  font-family: 'Satoshi-Light', cursive;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 19px;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: inline-block; /* Added to make transform work properly */
+}
+
+.nav-link:hover {
+  text-decoration: dotted;
+  transform: scale(1.50); /* This adds the zoom effect */
+}
+
+/* Responsive Navbar */
+@media (max-width: 1400px) {
+  .nav-container {
+    gap: 100px; /* Reduce gap on smaller screens */
   }
-  
+}
+
+@media (max-width: 1200px) {
   .navbar {
-    position: fixed;  /* Fixed to stay visible */
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    z-index: 1000;  /* Ensures it's above everything */
+    margin-right: 0;
   }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
+  .nav-container {
+    gap: 80px;
   }
-  
-  .nav-link:hover {
-    text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    margin-right: 0;
+  }
+  .nav-container {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
   }
   
   .logo {
-    position: absolute;
+    position: absolute; /* Make logo absolute on mobile */
     top: 10px;
     left: 10px;
-    z-index: 1000;
+    margin-bottom: 0;
   }
   
-  .logo img {
-    width: 200px; /* Adjust as needed */
-    height: auto;
+  .navbar {
+    margin-right: 0;
+    width: 100%;
+    justify-content: center;
+    margin-top: 60px; /* Add space for logo */
+  }
+  
+  .nav-container {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .nav-column {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .nav-column.middle {
+    position: relative; /* Reset position for mobile */
+    left: auto;
+    transform: none;
   }
   
   .text-container {
-    z-index: 100;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+    font-size: 50px !important; /* Make text smaller on mobile */
+  }
+  
+  .glass-cursor, .clip-area, .english-mask {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo img {
+    width: 120px !important;
+  }
+  
+  .nav-column {
+    gap: 15px;
+  }
+  
+  .nav-link {
+    font-size: 16px;
+  }
+  
+  .text-container {
+    font-size: 36px !important;
+  }
+  
+  .glass-cursor, .clip-area, .english-mask {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
+.text-container {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 90px;
+  color: white;
+  opacity: 0.8;
+  user-select: none;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  text-align: center; /* Center text for mobile */
+  padding: 0 20px; /* Add padding for mobile */
+}
+
+/* English layer - visible by default */
+.english-layer {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Japanese layer - positioned exactly where the English layer is */
+.japanese-layer {
+  position: absolute;
+  z-index: 1;
+  visibility: hidden; /* Make it visible but it will be hidden behind English */
+}
+
+/* The glass cursor */
+.glass-cursor {
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  background: rgba(0, 0, 50, 0.1);
+  box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
+  backdrop-filter: none; /* Set dynamically in JS */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+/* Clipping mask for text visibility */
+.clip-area {
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 210;
+  overflow: hidden;
+}
+
+/* Clone of Japanese text visible in cursor */
+.japanese-clone {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 55.6242274413px; /* Match the main text size */
+  color: white;
+  transform: translate(-50%, -50%); /* Center it within the clip area */
+}
+
+/* Mask for hiding English text in cursor area */
+.english-mask {
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: black;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 203;
+  mix-blend-mode: exclusion;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+:root {
+  --color-bg1: rgb(2, 0, 36);
+  --color-bg2: rgb(225, 3, 3);
+  --color1: 238,174,202;
+  --color2: 253,29,29;
+  --color3: 252,176,69;
+  --color4: 251,150,37,1;
+  --color5: 253, 187, 45, 1;
+  --color-interactive: 253,187,45;
+  
+  --circle-size: 100%;
+  --blending: soft-light;
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+.gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  top: 0;
+  left: 0;
+}
+
+.gradient-bg svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.gradients-container {
+  filter: url(#goo) blur(40px);
+  width: 100%;
+  height: 100%;
+}
+
+.g1 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+  opacity: 1;
+}
+
+.g2 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+  opacity: 1;
+}
+
+.g3 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 40s linear infinite;
+  opacity: 1;
+}
+
+.g4 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+
+.g5 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+  opacity: 1;
+}
+
+.grain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url('noise.png'); /* Make sure to add a noise texture */
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.interactive {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
+}
+
+/* For mobile navbar toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
     position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+  }
+  
+  .nav-container {
+    display: none; /* Hide by default on mobile */
+  }
+  
+  .nav-container.active {
+    display: flex; /* Show when active */
+    position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1050;
     justify-content: center;
     align-items: center;
-    font-size: 96px;
-    color: white;
-    opacity: 0.8;
-    user-select: none;
-    text-shadow: 1px 1px rgba(0,0,0,0.1);
+    padding: 50px 20px;
   }
-  
-  /* English layer - visible by default */
-  .english-layer {
-    position: relative;
-    z-index: 2;
-  }
-  
-  /* Japanese layer - positioned over English layer but hidden */
-  .japanese-layer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    visibility: hidden; /* Hidden by default */
-  }
-  
-  /* The glass cursor */
-  .glass-cursor {
-    position: fixed;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 200;
-    background: rgba(0, 0, 50, 0.1);
-    box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
-    backdrop-filter: none; /* Set dynamically in JS */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    overflow: hidden;
-  }
-  
-  /* Clipping mask for text visibility */
-  .clip-area {
-    position: fixed;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 210;
-    overflow: hidden;
-  }
-  
-  /* Clone of Japanese text visible in cursor */
-  .japanese-clone {
-    position: absolute;
-    white-space: nowrap;
-    font-size: 3rem;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 80px; /* Match the width of the text container */
 }
-  
-  /* Mask for hiding English text in cursor area */
-  .english-mask {
-    position: fixed;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: black;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    mix-blend-mode: exclusion;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  :root {
-    --color-bg1: rgb(2, 0, 36);
-    --color-bg2: rgb(225, 3, 3);
-    --color1: 238,174,202;
-    --color2: 253,29,29;
-    --color3: 252,176,69;
-    --color4: 251,150,37,1;
-    --color5: 253, 187, 45, 1;
-    --color-interactive: 253,187,45;
-    
-    --circle-size: 100%;
-    --blending: soft-light;
-  }
-  
-  @keyframes moveInCircle {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(180deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes moveVertical {
-    0% {
-      transform: translateY(-50%);
-    }
-    50% {
-      transform: translateY(50%);
-    }
-    100% {
-      transform: translateY(-50%);
-    }
-  }
-  
-  @keyframes moveHorizontal {
-    0% {
-      transform: translateX(-50%) translateY(-10%);
-    }
-    50% {
-      transform: translateX(50%) translateY(10%);
-    }
-    100% {
-      transform: translateX(-50%) translateY(-10%);
-    }
-  }
-  
-  .gradient-bg {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
-    top: 0;
-    left: 0;
-  }
-  
-  .gradient-bg svg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .gradients-container {
-    filter: url(#goo) blur(40px);
-    width: 100%;
-    height: 100%;
-  }
-  
-  .g1 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-    transform-origin: center center;
-    animation: moveVertical 30s ease infinite;
-    opacity: 1;
-  }
-  
-  .g2 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-    transform-origin: calc(50% - 400px);
-    animation: moveInCircle 20s reverse infinite;
-    opacity: 1;
-  }
-  
-  .g3 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2 + 200px);
-    left: calc(50% - var(--circle-size) / 2 - 500px);
-    transform-origin: calc(50% + 400px);
-    animation: moveInCircle 40s linear infinite;
-    opacity: 1;
-  }
-  
-  .g4 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: var(--circle-size);
-    height: var(--circle-size);
-    top: calc(50% - var(--circle-size) / 2);
-    left: calc(50% - var(--circle-size) / 2);
-    transform-origin: calc(50% - 200px);
-    animation: moveHorizontal 40s ease infinite;
-    opacity: 0.7;
-  }
-  
-  .g5 {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: calc(var(--circle-size) * 2);
-    height: calc(var(--circle-size) * 2);
-    top: calc(50% - var(--circle-size));
-    left: calc(50% - var(--circle-size));
-    transform-origin: calc(50% - 800px) calc(50% + 200px);
-    animation: moveInCircle 20s ease infinite;
-    opacity: 1;
-  }
-  
-  .grain {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-image: url('noise.png'); /* Make sure to add a noise texture */
-    opacity: 0.2;
-    pointer-events: none;
-  }
-  
-  .interactive {
-    position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
-    mix-blend-mode: var(--blending);
-    width: 100%;
-    height: 100%;
-    top: -50%;
-    left: -50%;
-    opacity: 0.7;
-  }

@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu toggle functionality
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navContainer = document.querySelector('.nav-container');
+    
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            navContainer.classList.toggle('active');
+            
+            // Change icon based on menu state
+            const icon = mobileToggle.querySelector('i');
+            if (navContainer.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+    
+    // Close mobile menu when clicking a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navContainer.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
     // Gradient background animation
     const interBubble = document.querySelector('.interactive');
     let curX = 0;
@@ -22,6 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     move();
 
+    // Determine cursor size based on window width
+    function getCursorSize() {
+        if (window.innerWidth <= 576) {
+            return 100; // Small screens
+        } else if (window.innerWidth <= 768) {
+            return 150; // Medium screens
+        } else {
+            return 220; // Large screens
+        }
+    }
+
     // Glass cursor and dual language text effect
     const cursor = document.querySelector('.glass-cursor');
     const clipArea = document.querySelector('.clip-area');
@@ -38,15 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update all elements based on mouse position
     function updateCursorPosition(x, y) {
+        // Update cursor size based on screen size
+        const cursorSize = getCursorSize();
+        
         // Position glass cursor
+        cursor.style.width = `${cursorSize}px`;
+        cursor.style.height = `${cursorSize}px`;
         cursor.style.left = x + 'px';
         cursor.style.top = y + 'px';
         
         // Position clip area for Japanese text
+        clipArea.style.width = `${cursorSize}px`;
+        clipArea.style.height = `${cursorSize}px`;
         clipArea.style.left = x + 'px';
         clipArea.style.top = y + 'px';
         
         // Position mask to hide English text in cursor area
+        englishMask.style.width = `${cursorSize}px`;
+        englishMask.style.height = `${cursorSize}px`;
         englishMask.style.left = x + 'px';
         englishMask.style.top = y + 'px';
         
@@ -59,6 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Position Japanese clone text relative to its original position
         const japaneseClone = document.querySelector('.japanese-clone');
+        
+        // Adjust font size based on screen width
+        if (window.innerWidth <= 576) {
+            japaneseClone.style.fontSize = '36px';
+        } else if (window.innerWidth <= 768) {
+            japaneseClone.style.fontSize = '50px';
+        } else {
+            japaneseClone.style.fontSize = '55.6242274413px';
+        }
+        
         japaneseClone.style.left = (textRect.left - x + textRect.width/2) + 'px';
         japaneseClone.style.top = (textRect.top - y + textRect.height/2) + 'px';
         
@@ -93,5 +156,30 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.opacity = '1';
         englishMask.style.opacity = '1';
         updateCursorPosition(e.clientX, e.clientY);
+    });
+    
+    // Update cursor and text sizes when window is resized
+    window.addEventListener('resize', function() {
+        const x = window.innerWidth / 2;
+        const y = window.innerHeight / 2;
+        updateCursorPosition(x, y);
+    });
+    
+    // Touch screen support for mobile devices
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            updateCursorPosition(touch.clientX, touch.clientY);
+            e.preventDefault(); // Prevent scrolling when interacting with cursor
+        }
+    }, { passive: false });
+    
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            cursor.style.opacity = '1';
+            englishMask.style.opacity = '1';
+            updateCursorPosition(touch.clientX, touch.clientY);
+        }
     });
 });
