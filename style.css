@@ -74,8 +74,6 @@ html, body {
   gap: 15px;
 }
 
-
-
 /* Navbar links */
 .nav-link {
   font-family: 'Satoshi-Light', cursive;
@@ -159,7 +157,7 @@ html, body {
   }
   
   .text-container {
-    font-size: 50px !important; /* Make text smaller on mobile */
+    padding: 0 20px !important; /* Add padding for mobile */
   }
   
   .glass-cursor, .clip-area, .english-mask {
@@ -181,10 +179,6 @@ html, body {
     font-size: 16px;
   }
   
-  .text-container {
-    font-size: 36px !important;
-  }
-  
   .glass-cursor, .clip-area, .english-mask {
     width: 100px !important;
     height: 100px !important;
@@ -201,12 +195,8 @@ html, body {
   left: 0;
   justify-content: center;
   align-items: center;
-  font-size: 90px;
-  color: white;
-  opacity: 0.8;
   user-select: none;
-  text-shadow: 1px 1px rgba(0,0,0,0.1);
-  text-align: center; /* Center text for mobile */
+  text-align: center; /* Center for mobile */
   padding: 0 20px; /* Add padding for mobile */
 }
 
@@ -214,13 +204,26 @@ html, body {
 .english-layer {
   position: absolute;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Japanese layer - positioned exactly where the English layer is */
+/* Japanese layer - positioned exactly where the English layer is but hidden */
 .japanese-layer {
   position: absolute;
   z-index: 1;
-  visibility: hidden; /* Make it visible but it will be hidden behind English */
+  visibility: hidden; /* Keep hidden by default */
+  opacity: 0; /* Keep fully transparent by default */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for text images */
+.text-image {
+  max-width: 90%;
+  height: auto;
 }
 
 /* The glass cursor */
@@ -229,19 +232,19 @@ html, body {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 200;
   background: rgba(0, 0, 50, 0.1);
-  box-shadow: 0 0 20px rgba(100, 100, 255, 0.2);
+  box-shadow: 0 0 20px rgba(100, 100, 255, 0.3);
   backdrop-filter: none; /* Set dynamically in JS */
   opacity: 0;
   transition: opacity 0.3s ease;
   overflow: hidden;
 }
 
-/* Clipping mask for text visibility */
+/* Clipping mask for image visibility */
 .clip-area {
   position: fixed;
   width: 220px;
@@ -253,13 +256,20 @@ html, body {
   overflow: hidden;
 }
 
-/* Clone of Japanese text visible in cursor */
+/* Clone of Japanese image visible in cursor */
 .japanese-clone {
   position: absolute;
-  white-space: nowrap;
-  font-size: 55.6242274413px; /* Match the main text size */
-  color: white;
-  transform: translate(-50%, -50%); /* Center it within the clip area */
+  width: auto;
+  height: auto;
+  overflow: visible;
+  visibility: visible; /* Make sure the clone is visible */
+  opacity: 1;
+}
+
+.japanese-clone img {
+  width: 100%;
+  height: auto;
+  transform-origin: center center;
 }
 
 /* Mask for hiding English text in cursor area */
@@ -469,7 +479,8 @@ html, body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.5); /* Changed to transparent background */
+    backdrop-filter: blur(5px); /* Added blur effect for better readability */
     z-index: 1050;
     justify-content: center;
     align-items: center;
