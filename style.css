@@ -20,6 +20,7 @@ html, body {
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+
 /* Header container to manage logo and navbar positioning */
 .header-container {
   position: absolute;
@@ -80,7 +81,7 @@ html, body {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 19px;
+  font-size: 15px;
   transition: all 0.3s ease;
   text-align: center;
   display: inline-block; /* Added to make transform work properly */
@@ -88,7 +89,7 @@ html, body {
 
 .nav-link:hover {
   text-decoration: dotted;
-  transform: scale(1.50); /* This adds the zoom effect */
+  transform: scale(1.05); /* This adds the zoom effect */
 }
 
 /* Responsive Navbar */
@@ -227,6 +228,7 @@ html, body {
 }
 
 /* The glass cursor */
+/* Update the glass cursor styles in style.css */
 .glass-cursor {
   position: fixed;
   width: 220px;
@@ -240,11 +242,11 @@ html, body {
   box-shadow: 0 0 20px rgba(100, 100, 255, 0.3);
   backdrop-filter: none; /* Set dynamically in JS */
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
   overflow: hidden;
 }
 
-/* Clipping mask for image visibility */
+/* Update the clip area */
 .clip-area {
   position: fixed;
   width: 220px;
@@ -254,22 +256,25 @@ html, body {
   transform: translate(-50%, -50%);
   z-index: 210;
   overflow: hidden;
+  transition: transform 0.1s ease;
 }
 
-/* Clone of Japanese image visible in cursor */
+/* Update the Japanese clone */
 .japanese-clone {
   position: absolute;
   width: auto;
   height: auto;
   overflow: visible;
-  visibility: visible; /* Make sure the clone is visible */
+  visibility: visible;
   opacity: 1;
+  transition: transform 0.2s ease;
 }
 
 .japanese-clone img {
   width: 100%;
   height: auto;
   transform-origin: center center;
+  transition: transform 0.2s ease;
 }
 
 /* Mask for hiding English text in cursor area */
@@ -486,4 +491,137 @@ html, body {
     align-items: center;
     padding: 50px 20px;
   }
+
 }
+/* Footer Styles */
+.footer {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 50px 0 20px;
+  position: relative;
+  z-index: 900;
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.footer-column h3 {
+  font-family: 'San Miguel', sans-serif;
+  font-size: 22px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.footer-column h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: rgba(var(--color-interactive), 0.8);
+}
+
+.footer-column p {
+  font-family: 'Satoshi-Light', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(var(--color-interactive), 0.8);
+  transform: translateY(-5px);
+}
+
+.footer-link {
+  font-family: 'Satoshi-Light', sans-serif;
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: rgba(var(--color-interactive), 0.8);
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Satoshi-Light', sans-serif;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-column {
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .footer-column h3:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .footer-link:hover {
+    transform: none;
+  }
+}
+
+
+
+.gradient-bg {
+  flex: 1;
+}
+
+
+
+
+
+
