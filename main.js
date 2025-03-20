@@ -100,76 +100,96 @@ document.addEventListener('DOMContentLoaded', () => {
     japaneseClone.style.opacity = '1';
 
     // Function to update all elements based on mouse position
-    function updateCursorPosition(x, y) {
-        // Update cursor size based on screen size
-        const cursorSize = getCursorSize();
+    // Update the glass cursor effect function in main.js
+function updateCursorPosition(x, y) {
+    // Update cursor size based on screen size
+    const cursorSize = getCursorSize();
+    
+    // Position glass cursor
+    cursor.style.width = `${cursorSize}px`;
+    cursor.style.height = `${cursorSize}px`;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    
+    // Position clip area for Japanese image
+    clipArea.style.width = `${cursorSize}px`;
+    clipArea.style.height = `${cursorSize}px`;
+    clipArea.style.left = x + 'px';
+    clipArea.style.top = y + 'px';
+    
+    // Position mask to hide English image in cursor area
+    englishMask.style.width = `${cursorSize}px`;
+    englishMask.style.height = `${cursorSize}px`;
+    englishMask.style.left = x + 'px';
+    englishMask.style.top = y + 'px';
+    
+    // Make cursor visible
+    cursor.style.opacity = '1';
+    englishMask.style.opacity = '1';
+    
+    // Calculate text container boundaries
+    const textRect = textContainer.getBoundingClientRect();
+    const japaneseImageRect = japaneseImage.getBoundingClientRect();
+    const englishImageRect = englishImage.getBoundingClientRect();
+    
+    // Get the offset between cursor position and the top-left corner of textContainer
+    const offsetX = x - textRect.left;
+    const offsetY = y - textRect.top;
+    
+    // Calculate the position within the container as a percentage
+    const percentX = offsetX / textRect.width;
+    const percentY = offsetY / textRect.height;
+    
+    // Position clone image to align perfectly with original position
+    const japaneseCloneImg = japaneseClone.querySelector('img');
+    
+    // Match the size of the original Japanese image exactly
+    japaneseCloneImg.style.width = japaneseImage.offsetWidth + 'px';
+    japaneseCloneImg.style.height = japaneseImage.offsetHeight + 'px';
+    
+    // Calculate the position for the japaneseClone so that it looks properly aligned
+    // We need to position the image inside the clip area so that the part of the image
+    // that should be under the cursor is actually under the cursor
+    japaneseClone.style.width = japaneseImage.offsetWidth + 'px';
+    japaneseClone.style.height = japaneseImage.offsetHeight + 'px';
+    
+    // Position the clone so the correct part of the image shows through the cursor
+    const leftPos = -(offsetX - cursorSize/2);
+    const topPos = -(offsetY - cursorSize/2);
+    
+    japaneseClone.style.left = leftPos + 'px';
+    japaneseClone.style.top = topPos + 'px';
+    
+    // Check if the cursor is over the image area
+    const isOverText = (
+        x >= textRect.left &&
+        x <= textRect.right &&
+        y >= textRect.top &&
+        y <= textRect.bottom
+    );
+    
+    // Apply magnifying effect only when hovering over image
+    if (isOverText) {
+        // Create a radial gradient for magnification (stronger in center, weaker at edges)
+        cursor.style.backdropFilter = 'blur(30px)';
         
-        // Position glass cursor
-        cursor.style.width = `${cursorSize}px`;
-        cursor.style.height = `${cursorSize}px`;
-        cursor.style.left = x + 'px';
-        cursor.style.top = y + 'px';
+        // Add magnification effect
+        japaneseCloneImg.style.transformOrigin = `${offsetX}px ${offsetY}px`;
+        japaneseCloneImg.style.transform = 'scale(1.2)'; // Magnify by 20%
         
-        // Position clip area for Japanese image
-        clipArea.style.width = `${cursorSize}px`;
-        clipArea.style.height = `${cursorSize}px`;
-        clipArea.style.left = x + 'px';
-        clipArea.style.top = y + 'px';
+        // Create a radial gradient for the transform
+        const distanceFromCenter = Math.sqrt(Math.pow(offsetX - textRect.width/2, 2) + Math.pow(offsetY - textRect.height/2, 2));
+        const maxDistance = Math.sqrt(Math.pow(textRect.width/2, 2) + Math.pow(textRect.height/2, 2));
+        const normalizedDistance = distanceFromCenter / maxDistance;
         
-        // Position mask to hide English image in cursor area
-        englishMask.style.width = `${cursorSize}px`;
-        englishMask.style.height = `${cursorSize}px`;
-        englishMask.style.left = x + 'px';
-        englishMask.style.top = y + 'px';
-        
-        // Make cursor visible
-        cursor.style.opacity = '1';
-        englishMask.style.opacity = '1';
-        
-        // Calculate text container boundaries
-        const textRect = textContainer.getBoundingClientRect();
-        const japaneseImageRect = japaneseImage.getBoundingClientRect();
-        const englishImageRect = englishImage.getBoundingClientRect();
-        
-        // Get the offset between cursor position and the top-left corner of textContainer
-        const offsetX = x - textRect.left;
-        const offsetY = y - textRect.top;
-        
-        // Calculate the position within the container as a percentage
-        const percentX = offsetX / textRect.width;
-        const percentY = offsetY / textRect.height;
-        
-        // Position clone image to align perfectly with original position
-        const japaneseCloneImg = japaneseClone.querySelector('img');
-        
-        // Match the size of the original Japanese image exactly
-        japaneseCloneImg.style.width = japaneseImage.offsetWidth + 'px';
-        japaneseCloneImg.style.height = japaneseImage.offsetHeight + 'px';
-        
-        // Calculate the position for the japaneseClone so that it looks properly aligned
-        // We need to position the image inside the clip area so that the part of the image
-        // that should be under the cursor is actually under the cursor
-        japaneseClone.style.width = japaneseImage.offsetWidth + 'px';
-        japaneseClone.style.height = japaneseImage.offsetHeight + 'px';
-        
-        // Position the clone so the correct part of the image shows through the cursor
-        const leftPos = -(offsetX - cursorSize/2);
-        const topPos = -(offsetY - cursorSize/2);
-        
-        japaneseClone.style.left = leftPos + 'px';
-        japaneseClone.style.top = topPos + 'px';
-        
-        // Check if the cursor is over the image area
-        const isOverText = (
-            x >= textRect.left &&
-            x <= textRect.right &&
-            y >= textRect.top &&
-            y <= textRect.bottom
-        );
-        
-        // Apply blur effect only when hovering over image
-        cursor.style.backdropFilter = isOverText ? 'blur(30px)' : 'none';
+        // Scale between 1.1 (edge) and 1.5 (center)
+        const scaleValue = 1.5 - (normalizedDistance * 0.4);
+        japaneseCloneImg.style.transform = `scale(${scaleValue})`;
+    } else {
+        cursor.style.backdropFilter = 'none';
+        japaneseCloneImg.style.transform = 'scale(1)';
     }
+}
     
     // Track mouse movement
     document.addEventListener('mousemove', function(e) {

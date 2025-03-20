@@ -50,43 +50,50 @@
   <div class="clip-area"></div>
   <div class="english-mask"></div>
 
-  <!-- Dual language image container -->
-  <div class="text-container">
-    <!-- English image layer (visible by default) -->
-    <div class="english-layer">
-      <img src="english-text.png" alt="Where Technology Meets Art" class="text-image">
-    </div>
-    
-    <!-- Japanese image layer (hidden by default) -->
-    <div class="japanese-layer">
-      <img src="japanese-text.png" alt="We Bring Your Vision Into Reality" class="text-image">
-    </div>
-  </div>
+  <!-- Main content wrapper -->
+  <div class="main-content-wrapper">
+    <!-- Hero section with background effect -->
+    <section class="hero-section">
+      <div class="gradient-bg">
+        <svg xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+              <feColorMatrix in="blur" mode="matrix"
+                values="1 0 0 0 0  
+                        0 1 0 0 0  
+                        0 0 1 0 0  
+                        0 0 0 18 -8" result="goo" />
+              <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+          </defs>
+        </svg>
+        <div class="gradients-container">
+          <div class="g1"></div>
+          <div class="g2"></div>
+          <div class="g3"></div>
+          <div class="g4"></div>
+          <div class="g5"></div>
+          <div class="interactive"></div>
+        </div>
+        
+        <div class="grain"></div>
+        
+        <!-- Dual language image container -->
+        <div class="text-container">
+          <!-- English image layer (visible by default) -->
+          <div class="english-layer">
+            <img src="english-text.png" alt="Where Technology Meets Art" class="text-image">
+          </div>
+          
+          <!-- Japanese image layer (hidden by default) -->
+          <div class="japanese-layer">
+            <img src="japanese-text.png" alt="We Bring Your Vision Into Reality" class="text-image">
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="gradient-bg">
-    <svg xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix"
-            values="1 0 0 0 0  
-                    0 1 0 0 0  
-                    0 0 1 0 0  
-                    0 0 0 18 -8" result="goo" />
-          <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-      </defs>
-    </svg>
-    <div class="gradients-container">
-      <div class="g1"></div>
-      <div class="g2"></div>
-      <div class="g3"></div>
-      <div class="g4"></div>
-      <div class="g5"></div>
-      <div class="interactive"></div>
-    </div>
-    <div class="grain"></div>
-  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
