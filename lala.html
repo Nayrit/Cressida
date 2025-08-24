@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cressida</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /*
+    --- FONT DEFINITIONS ---
+    */
+    @font-face {
+      font-family: 'San Miguel';
+      src: url('fonts/san-miguel.regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Satoshi-Light';
+      src: url('fonts/Satoshi-Light.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /*
+    --- GLOBAL & THEME COLOR VARIABLES ---
+    */
+    :root {
+        /* Default Colors (Used for Hero and Footer) */
+        --color-bg1-default: rgb(2, 0, 36);
+        --color-bg2-default: rgb(225, 3, 3);
+        --color1-default: 238,174,202;
+        --color2-default: 253,29,29;
+        --color3-default: 252,176,69;
+        --color4-default: 251,150,37;
+        --color5-default: 253, 187, 45;
+        --color-interactive-default: 253,187,45;
+
+        /* --- PROJECT PANEL & GOO COLOR DEFINITIONS --- */
+        
+    /* Panel 1 Colors - Green Shades */
+        --panel-1-bg1: #020024;
+        --panel-1-bg2: #1e6f0b;
+        --panel-1-c1: 174,202,174;
+        --panel-1-c2: 29,190,29;
+        --panel-1-c3: 176,252,69;
+        --panel-1-c4: 150,251,37;
+        --panel-1-c5: 187,253,45;
+        --panel-1-interactive: 187,253,45;
+
+        /* Panel 2 Colors - Green Shades */
+        --panel-2-bg1: #ffffff;
+        --panel-2-bg2: #0b7f6c;
+        --panel-2-c1: 174,202,174;
+        --panel-2-c2: 29,190,140;
+        --panel-2-c3: 176,252,140;
+        --panel-2-c4: 150,251,140;
+        --panel-2-c5: 187,253,140;
+        --panel-2-interactive: 187,253,140;
+
+        /* Panel 3 Colors - Green Shades */
+        --panel-3-bg1: #020024;
+        --panel-3-bg2: #dd9009;
+        --panel-3-c1: 174,202,174;
+        --panel-3-c2: 29,190,140;
+        --panel-3-c3: 176,252,140;
+        --panel-3-c4: 150,251,140;
+        --panel-3-c5: 187,253,140;
+        --panel-3-interactive: 187,253,140;
+
+        /* Panel 4 Colors - Black and White Shades */
+        --panel-4-bg1: #000000;
+        --panel-4-bg2: #333333;
+        --panel-4-c1: 150,150,150;
+        --panel-4-c2: 100,100,100;
+        --panel-4-c3: 200,200,200;
+        --panel-4-c4: 220,220,220;
+        --panel-4-c5: 240,240,240;
+        --panel-4-interactive: 255,255,255;
+        
+        /* General Settings */
+        --circle-size: 100%;
+        --blending: soft-light;
+    }
+
+    .services-page-colors {
+        --color-bg1: var(--color-bg1-default);
+        --color-bg2: var(--color-bg2-default);
+        --color1: var(--color1-default);
+        --color2: var(--color2-default);
+        --color3: var(--color3-default);
+        --color4: var(--color4-default);
+        --color5: var(--color5-default);
+        --color-interactive: var(--color-interactive-default);
+    }
+
+    /*
+    --- BASE STYLES ---
+    */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'San Miguel', sans-serif;
+      margin: 0;
+      padding: 0;
+      cursor: none;
+      overflow-x: hidden;
+      background-color: #0c0a1a;
+    }
+
+    /*
+    --- PERSISTENT GRADIENT BACKGROUND ---
+    */
+    .gradient-bg {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+      background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+      transition: background 1s ease-in-out;
+    }
+
+    .gradient-bg svg {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+
+    .gradients-container {
+      filter: url(#goo) blur(40px);
+      width: 100%;
+      height: 100%;
+    }
+
+    .g1, .g2, .g3, .g4, .g5 {
+      position: absolute;
+      mix-blend-mode: var(--blending);
+      opacity: 1;
+    }
+
+    .g1 {
+      background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+      transform-origin: center center;
+      animation: moveVertical 30s ease infinite;
+    }
+
+    .g2 {
+      background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+      transform-origin: calc(50% - 400px);
+      animation: moveInCircle 20s reverse infinite;
+    }
+
+    .g3 {
+      background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2 + 200px);
+      left: calc(50% - var(--circle-size) / 2 - 500px);
+      transform-origin: calc(50% + 400px);
+      animation: moveInCircle 40s linear infinite;
+    }
+
+    .g4 {
+      background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      top: calc(50% - var(--circle-size) / 2);
+      left: calc(50% - var(--circle-size) / 2);
+      transform-origin: calc(50% - 200px);
+      animation: moveHorizontal 40s ease infinite;
+      opacity: 0.7;
+    }
+
+    .g5 {
+      background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+      width: calc(var(--circle-size) * 2);
+      height: calc(var(--circle-size) * 2);
+      top: calc(50% - var(--circle-size));
+      left: calc(50% - var(--circle-size));
+      transform-origin: calc(50% - 800px) calc(50% + 200px);
+      animation: moveInCircle 20s ease infinite;
+    }
+
+    .interactive {
+      position: absolute;
+      background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+      mix-blend-mode: var(--blending);
+      width: 100%;
+      height: 100%;
+      top: -50%;
+      left: -50%;
+      opacity: 0.7;
+    }
+
+    .grain {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: url('noise.png');
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    @keyframes moveInCircle {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes moveVertical {
+      0% { transform: translateY(-50%); }
+      50% { transform: translateY(50%); }
+      100% { transform: translateY(-50%); }
+    }
+
+    @keyframes moveHorizontal {
+      0% { transform: translateX(-50%) translateY(-10%); }
+      50% { transform: translateX(50%) translateY(10%); }
+      100% { transform: translateX(-50%) translateY(-10%); }
+    }
+
+    /*
+    --- HEADER & NAVIGATION ---
+    */
+    .header-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .logo {
+      padding: 10px;
+      margin-left: 10px;
+      z-index: 1001;
+    }
+
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+
+    .navbar {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      padding: 15px 20px;
+      pointer-events: none;
+    }
+
+    .nav-container {
+      display: flex;
+      gap: 200px;
+      pointer-events: auto;
+    }
+
+    .nav-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-link {
+      font-family: 'Satoshi-Light', cursive;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .nav-link:hover {
+      text-decoration: dotted;
+    }
+
+    .letter {
+      display: inline-block;
+      position: relative;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1100;
+    }
+
+    /*
+    --- PAGE CONTENT WRAPPER ---
+    */
+    .main-content-wrapper {
+      position: relative;
+      z-index: 10;
+      isolation: isolate;
+    }
+
+    /*
+    --- HERO & TEXT REVEAL ---
+    */
+    .hero-section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Fixed text container structure */
+    .text-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.english-layer, .japanese-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.english-layer {
+  z-index: 2;
+}
+
+.japanese-layer {
+  z-index: 1;
+  visibility: visible;
+  opacity: 1;
+}
+
+    /*
+    --- CURSOR STYLES ---
+    */
+    .glass-cursor, .clip-area, .english-mask {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      
+    }
+
+    .glass-cursor {
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      backdrop-filter: saturate(180%) contrast(120%);
+      transition-property: opacity, backdrop-filter;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+      overflow: hidden;
+      z-index: 200;
+    }
+
+    .clip-area {
+      z-index: 210;
+      overflow: hidden;
+      transition: transform 0.1s ease;
+    }
+
+    .japanese-clone {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      top: 0;
+      left: 0;
+    }
+
+    .japanese-clone img {
+      width: 100%;
+      height: auto;
+      transform-origin: center center;
+      transition: transform 0.2s ease;
+    }
+
+    .english-mask {
+      background: black;
+      z-index: 203;
+      mix-blend-mode: exclusion;
+    }
+
+    /*
+    --- HORIZONTAL PROJECTS SECTION ---
+    */
+    .projects-section-horizontal {
+      height: 400vh;
+      position: relative;
+      background-color: transparent;
+    }
+
+    .projects-track {
+      height: 100vh;
+      width: 400%;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .project-panel {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5vw;
+      color: white;
+    }
+
+    .project-content {
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .project-content img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .project-details {
+      margin-top: 30px;
+    }
+
+    .project-details h3 {
+      font-family: 'San Miguel', sans-serif;
+      font-size: 3rem;
+    }
+
+    .project-details p {
+      font-family: 'Satoshi-Light', sans-serif;
+      font-size: 1.2rem;
+    }
+
+    /*
+    --- FOOTER ---
+    */
+    .footer {
+      width: 100%;
+      padding: 50px 0 20px;
+      background-color: transparent;
+      color: white;
+      position: relative;
+      z-index: 20;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin: 20px;
+    }
+
+    .footer-column h3 {
+      font-family: 'San Miguel', sans-serif;
+      font-size: 22px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 50px;
+      height: 2px;
+      background: rgba(var(--color-interactive), 0.8);
+    }
+
+    .footer-column p, .footer-link {
+      font-family: 'Satoshi-Light', sans-serif;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(var(--color-interactive), 0.8);
+      transform: translateY(-5px);
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: rgba(var(--color-interactive), 0.8);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'Satoshi-Light', sans-serif;
+      font-size: 14px;
+    }
+
+    /*
+    --- RESPONSIVE STYLES ---
+    */
+    @media (max-width: 1400px) {
+      .nav-container { gap: 100px; }
+    }
+
+    @media (max-width: 1200px) {
+      .nav-container { gap: 80px; }
+    }
+
+    @media (max-width: 992px) {
+      .navbar { position: static; transform: none; }
+      .header-container { justify-content: space-between; align-items: center; }
+      .nav-container { gap: 60px; }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+      
+      .mobile-menu-toggle { display: block; position: absolute; top: 20px; right: 20px; }
+      
+      .navbar { width: 100%; position: static; transform: none; }
+      
+      .nav-container { display: none; }
+      
+      .nav-container.active {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 1050;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .nav-column { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 30px; }
+      
+      .glass-cursor, .clip-area, .english-mask { width: 150px !important; height: 150px !important; }
+      
+      .project-details h3 { font-size: 2rem; }
+      .project-details p { font-size: 1rem; }
+
+      .footer-container { flex-direction: column; align-items: center; }
+      
+      .footer-column { text-align: center; margin: 10px 0; }
+      
+      .footer-column h3:after { left: 50%; transform: translateX(-50%); }
+      
+      .social-icons { justify-content: center; }
+      
+      .footer-link:hover { transform: none; }
+    }
+
+    @media (max-width: 576px) {
+      .logo img { width: 120px !important; }
+      
+      .nav-column { gap: 15px; }
+      
+      .nav-link { font-size: 16px; }
+      
+      .glass-cursor, .clip-area, .english-mask { width: 100px !important; height: 100px !important; }
+    }
+  </style>
+</head>
+<body class="services-page-colors">
+
+  <div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0  
+                    0 1 0 0 0  
+                    0 0 1 0 0  
+                    0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
+    </div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="header-container">
+    <a href="index.html" class="logo">
+      <img src="https://placehold.co/200x80/ffffff/000000?text=CRESSIDA" alt="Logo">
+    </a>
+    
+    <button class="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-column">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link">Work</a>
+          <a href="services.html" class="nav-link">Services</a>
+        </div>
+        <div class="nav-column">
+          <a href="team.html" class="nav-link">Team</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-column">
+          <a href="story.html" class="nav-link">Story</a>
+          <a href="inspiration.html" class="nav-link">Inspiration</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="glass-cursor"></div>
+  <div class="clip-area"></div>
+  <div class="english-mask"></div>
+
+  <main class="main-content-wrapper">
+    <section class="hero-section">
+      <div class="text-container">
+        <div class="english-layer">
+          <img src="english-text.png" alt="Where Technology Meets Art" class="text-image">
+        </div>
+        <div class="japanese-layer">
+          <img src="japanese-text.png" alt="We Bring Your Vision Into Reality" class="text-image">
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-section-horizontal">
+      <div class="projects-track">
+        <div class="project-panel" data-panel-id="1">
+          <div class="project-content">
+            <img src="https://placehold.co/800x600/28a745/ffffff?text=Plant+Affairs" alt="Project One">
+            <div class="project-details">
+              <h3>Plant Affairs</h3>
+              <p>A stunning visual identity for a luxury brand.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-panel" data-panel-id="2">
+          <div class="project-content">
+            <img src="https://placehold.co/800x600/17a2b8/ffffff?text=Trimatrik" alt="Project Two">
+            <div class="project-details">
+              <h3>Trimatrik</h3>
+              <p>An interactive web experience for a tech startup.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-panel" data-panel-id="3">
+          <div class="project-content">
+            <img src="https://placehold.co/800x600/ffc107/ffffff?text=Atomomade" alt="Project Three">
+            <div class="project-details">
+              <h3>Atomomade</h3>
+              <p>A mobile application that connects communities.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-panel" data-panel-id="4">
+          <div class="project-content">
+            <img src="https://placehold.co/800x600/6c757d/ffffff?text=Spax" alt="Project Four">
+            <div class="project-details">
+              <h3>Spax</h3>
+              <p>An e-commerce platform with a focus on user experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>About Cressida</h3>
+          <p>We are a creative agency where technology and art converge. We craft unique digital experiences that bring your vision to reality.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="work.html" class="footer-link">Work</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Cressida. All Rights Reserved.
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile menu toggle functionality
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navContainer = document.querySelector('.nav-container');
+        
+        if (mobileToggle && navContainer) {
+            mobileToggle.addEventListener('click', () => {
+                navContainer.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                if (navContainer.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && navContainer && navContainer.classList.contains('active')) {
+                    navContainer.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // Gradient background animation
+        const interBubble = document.querySelector('.interactive');
+        let curX = 0, curY = 0, tgX = 0, tgY = 0;
+
+        function move() {
+            curX += (tgX - curX) / 20;
+            curY += (tgY - curY) / 20;
+            if (interBubble) {
+                interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+            }
+            requestAnimationFrame(move);
+        }
+
+        window.addEventListener('mousemove', (event) => {
+            tgX = event.clientX;
+            tgY = event.clientY;
+        });
+
+        if (interBubble) {
+            move();
+        }
+
+        // --- Text Reveal Effect ---
+
+        const cursor = document.querySelector('.glass-cursor');
+        const clipArea = document.querySelector('.clip-area');
+        const englishMask = document.querySelector('.english-mask');
+        const textContainer = document.querySelector('.text-container');
+        const japaneseLayer = document.querySelector('.japanese-layer');
+        const englishLayer = document.querySelector('.english-layer');
+        
+        const japaneseImage = japaneseLayer ? japaneseLayer.querySelector('img') : null;
+        const englishImage = englishLayer ? englishLayer.querySelector('img') : null;
+        
+        // Create a clone of the Japanese image to show inside the cursor
+        const japaneseClone = document.createElement('div');
+        japaneseClone.className = 'japanese-clone';
+        const cloneImage = document.createElement('img');
+
+        if (japaneseImage) {
+            cloneImage.src = japaneseImage.src;
+            cloneImage.alt = japaneseImage.alt;
+        }
+        
+        // Function to ensure the CLONED image matches the original's size
+        function sizeCloneImage() {
+            if (englishImage && englishImage.offsetWidth > 0) {
+                const w = englishImage.offsetWidth;
+                const h = englishImage.offsetHeight;
+                cloneImage.style.width = `${w}px`;
+                cloneImage.style.height = `${h}px`;
+                japaneseClone.style.width = `${w}px`;
+                japaneseClone.style.height = `${h}px`;
+            }
+        }
+
+        if (englishImage) {
+            if (englishImage.complete) {
+                sizeCloneImage();
+            } else {
+                englishImage.onload = sizeCloneImage;
+            }
+        }
+        
+        japaneseClone.appendChild(cloneImage);
+        if (clipArea) {
+            clipArea.appendChild(japaneseClone);
+        }
+
+        function getCursorSize() {
+            if (window.innerWidth <= 576) return 100;
+            if (window.innerWidth <= 768) return 150;
+            return 220;
+        }
+
+        function updateCursorPosition(x, y) {
+            const cursorSize = getCursorSize();
+            
+            if (cursor) {
+                cursor.style.width = `${cursorSize}px`;
+                cursor.style.height = `${cursorSize}px`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+            }
+            
+            if (clipArea) {
+                clipArea.style.width = `${cursorSize}px`;
+                clipArea.style.height = `${cursorSize}px`;
+                clipArea.style.left = `${x}px`;
+                clipArea.style.top = `${y}px`;
+            }
+            
+            if (englishMask) {
+                englishMask.style.width = `${cursorSize}px`;
+                englishMask.style.height = `${cursorSize}px`;
+                englishMask.style.left = `${x}px`;
+                englishMask.style.top = `${y}px`;
+            }
+            
+            if (!textContainer || !japaneseImage || !japaneseClone) return;
+
+            const textRect = textContainer.getBoundingClientRect();
+            const isOverText = (x >= textRect.left && x <= textRect.right && y >= textRect.top && y <= textRect.bottom);
+            
+            if (isOverText) {
+                if (cursor) cursor.style.opacity = '1';
+                if (englishMask) englishMask.style.opacity = '1';
+                japaneseClone.style.visibility = 'visible';
+                japaneseClone.style.opacity = '1';
+
+                const offsetX = x - textRect.left;
+                const offsetY = y - textRect.top;
+                
+                japaneseClone.style.left = `-${offsetX - cursorSize / 2}px`;
+                japaneseClone.style.top = `-${offsetY - cursorSize / 2}px`;
+
+                if (cursor) cursor.style.backdropFilter = 'blur(30px) saturate(300%) contrast(100%)';
+                
+                const distanceFromCenter = Math.sqrt(Math.pow(offsetX - textRect.width / 2, 2) + Math.pow(offsetY - textRect.height / 2, 2));
+                const maxDistance = Math.sqrt(Math.pow(textRect.width / 2, 2) + Math.pow(textRect.height / 2, 2));
+                const normalizedDistance = maxDistance > 0 ? distanceFromCenter / maxDistance : 0; 
+                const scaleValue = 1.5 - (normalizedDistance * 0.4);
+                cloneImage.style.transform = `scale(${scaleValue})`;
+                cloneImage.style.transformOrigin = `${offsetX}px ${offsetY}px`;
+
+            } else {
+                if (cursor) cursor.style.backdropFilter = 'saturate(180%) contrast(120%)';
+                cloneImage.style.transform = 'scale(1)';
+                japaneseClone.style.visibility = 'hidden';
+                japaneseClone.style.opacity = '0';
+            }
+        }
+        
+        document.addEventListener('mousemove', e => updateCursorPosition(e.clientX, e.clientY));
+        
+        document.addEventListener('mouseleave', () => {
+            if (cursor) cursor.style.opacity = '0';
+            if (englishMask) englishMask.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', (e) => {
+            if (cursor) cursor.style.opacity = '1';
+            if (englishMask) englishMask.style.opacity = '1';
+        });
+        
+        window.addEventListener('resize', () => {
+            sizeCloneImage();
+            updateCursorPosition(window.innerWidth / 2, window.innerHeight / 2);
+        });
+        
+        document.addEventListener('touchmove', e => {
+            if (e.touches.length > 0) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                updateCursorPosition(touch.clientX, touch.clientY);
+            }
+        }, { passive: false });
+        
+        document.addEventListener('touchstart', e => {
+            if (e.touches.length > 0) {
+                const touch = e.touches[0];
+                if (cursor) cursor.style.opacity = '1';
+                if (englishMask) englishMask.style.opacity = '1';
+                updateCursorPosition(touch.clientX, touch.clientY);
+            }
+        });
+        // Initialize cursor position
+        updateCursorPosition(window.innerWidth / 2, window.innerHeight / 2);
+
+        // --- Anime.js: Enhanced Nav Link Hover ---
+        const animatedNavLinks = document.querySelectorAll('.nav-link');
+        animatedNavLinks.forEach(link => {
+            let originalText = link.textContent;
+            let letters = originalText.split('').map(letter => `<span class="letter">${letter}</span>`).join('');
+            link.innerHTML = letters;
+
+            link.addEventListener('mouseenter', () => {
+                anime.remove(link.querySelectorAll('.letter'));
+                anime({
+                    targets: link.querySelectorAll('.letter'),
+                    translateY: [0, -10, 0],
+                    opacity: [1, 0.5, 1],
+                    scale: [1, 1.2, 1],
+                    delay: anime.stagger(30),
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
+
+        // --- GSAP Horizontal Scroll & Background Color Change ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        const track = document.querySelector(".projects-track");
+        const panels = gsap.utils.toArray(".project-panel");
+        const footer = document.querySelector(".footer");
+        const heroSection = document.querySelector(".hero-section");
+        const rootStyles = getComputedStyle(document.documentElement);
+
+        if (track && panels.length) {
+            gsap.to(track, {
+                x: () => -(track.scrollWidth - window.innerWidth),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".projects-section-horizontal",
+                    pin: true,
+                    scrub: 1,
+                    end: () => "+=" + (track.scrollWidth - window.innerWidth),
+                    invalidateOnRefresh: true
+                }
+            });
+
+            const colorTriggers = (triggerElement, colors) => {
+                ScrollTrigger.create({
+                    trigger: triggerElement,
+                    start: triggerElement === footer ? "top bottom-=100px" : "left center",
+                    end: "right center",
+                    containerAnimation: triggerElement !== footer ? gsap.getTweensOf(track)[0] : null,
+                    onToggle: self => {
+                        if (self.isActive) {
+                            gsap.to(".services-page-colors", { ...colors, duration: 1, ease: 'power1.inOut' });
+                        }
+                    },
+                    onLeaveBack: () => {
+                        if (triggerElement === footer) {
+                            const lastPanelId = panels[panels.length - 1].dataset.panelId;
+                            const lastPanelColors = getPanelColors(lastPanelId);
+                            gsap.to('.services-page-colors', { ...lastPanelColors, duration: 1, ease: 'power1.inOut' });
+                        }
+                    }
+                });
+            };
+
+            const getDefaultColors = () => ({
+                '--color-bg1': rootStyles.getPropertyValue('--color-bg1-default').trim(),
+                '--color-bg2': rootStyles.getPropertyValue('--color-bg2-default').trim(),
+                '--color1': rootStyles.getPropertyValue('--color1-default').trim(),
+                '--color2': rootStyles.getPropertyValue('--color2-default').trim(),
+                '--color3': rootStyles.getPropertyValue('--color3-default').trim(),
+                '--color4': rootStyles.getPropertyValue('--color4-default').trim(),
+                '--color5': rootStyles.getPropertyValue('--color5-default').trim(),
+                '--color-interactive': rootStyles.getPropertyValue('--color-interactive-default').trim()
+            });
+            
+            const getPanelColors = (panelId) => ({
+                 '--color-bg1': rootStyles.getPropertyValue(`--panel-${panelId}-bg1`).trim(),
+                 '--color-bg2': rootStyles.getPropertyValue(`--panel-${panelId}-bg2`).trim(),
+                 '--color1': rootStyles.getPropertyValue(`--panel-${panelId}-c1`).trim(),
+                 '--color2': rootStyles.getPropertyValue(`--panel-${panelId}-c2`).trim(),
+                 '--color3': rootStyles.getPropertyValue(`--panel-${panelId}-c3`).trim(),
+                 '--color4': rootStyles.getPropertyValue(`--panel-${panelId}-c4`).trim(),
+                 '--color5': rootStyles.getPropertyValue(`--panel-${panelId}-c5`).trim(),
+                 '--color-interactive': rootStyles.getPropertyValue(`--panel-${panelId}-interactive`).trim()
+            });
+
+            ScrollTrigger.create({
+                trigger: heroSection,
+                start: "top top",
+                end: "bottom top",
+                onToggle: (self) => self.isActive && gsap.to('.services-page-colors', { ...getDefaultColors(), duration: 1, ease: 'power1.inOut' })
+            });
+            
+            panels.forEach(panel => colorTriggers(panel, getPanelColors(panel.dataset.panelId)));
+            if (footer) colorTriggers(footer, getDefaultColors());
+        }
+    });
+  </script>
+</body>
+</html>

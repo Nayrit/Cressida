@@ -1,0 +1,119 @@
+/* Base */
+:root{
+  --ink:#111;
+  --muted:#7a7a7a;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:#fff;
+  color:var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.25;
+}
+
+.wizard-shell{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Close button */
+.close-x{
+  position:fixed; top:36px; right:52px;
+  width:56px; height:56px; border-radius:999px;
+  display:grid; place-items:center;
+  border:1.5px solid #111; color:#111; text-decoration:none;
+  cursor:pointer; z-index:10;
+  transition:transform .15s ease, background .15s ease, color .15s ease;
+}
+.close-x span{ font-size:36px; line-height:0; transform:translateY(-2px) }
+.close-x:hover{ transform:scale(1.05); background:#111; color:#fff }
+
+/* Steps */
+.wizard{ padding: clamp(48px, 6vw, 80px) clamp(24px, 6vw, 80px) 120px; }
+.wizard-in{ max-width: 1400px; margin: 0 auto; }
+
+/* Headline */
+.h-eyebrow{
+  font-family: 'Outfit', Inter, system-ui;
+  font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 32px);
+  letter-spacing:.01em;
+  margin: 18px 0 36px;
+}
+
+/* === STEP 1 === */
+.service-grid{
+  display:grid; grid-template-columns:1fr; gap:22px;
+  margin-top: clamp(16px, 2.5vw, 30px);
+}
+.service{
+  background:transparent; border:0; border-bottom:2px solid #d9d9d9;
+  padding:8px 0 12px; text-align:left; cursor:pointer;
+  color:#b0b0b0;
+  font: 300 clamp(36px, 5.5vw, 64px)/1.06 'Outfit', Inter, system-ui;
+  transition: color .15s ease, border-color .15s ease;
+}
+.service:hover{ color:#333; border-color:#c7c7c7 }
+.service.is-selected{ color:#111; border-color:#111 }
+
+/* === STEP 2 === */
+.twocol{
+  display:grid; grid-template-columns:1fr 1fr; gap: clamp(32px,5vw,72px);
+  align-items:start;
+}
+.choice-list{ display:grid; gap:18px; margin-top:18px; }
+.choice{ display:flex; align-items:center; gap:16px; cursor:pointer; }
+.choice input{ appearance:none; width:22px; height:22px; border-radius:50%; border:2px solid #111; position:relative; }
+.choice input:checked::after{ content:""; position:absolute; inset:4px; background:#111; border-radius:50%; }
+.choice .opt{ font: 400 clamp(26px, 3.9vw, 44px)/1.12 'Outfit', Inter, system-ui; }
+.choice.dim .opt{ color:#c7c7c7 }
+
+.budget-wrap{ margin-top:32px; }
+.budget-label{ font: 400 clamp(26px, 3.6vw, 44px)/1.2 'Outfit', Inter, system-ui; margin-bottom:18px; }
+#budgetRange{ appearance:none; width:min(640px, 60vw); height:0; outline:none; position:relative; z-index:2; }
+#budgetRange::-webkit-slider-thumb{
+  appearance:none; width:22px; height:22px; border-radius:50%; background:#111; border:0; margin-top:10px; cursor:pointer;
+  box-shadow:0 0 0 6px rgba(0,0,0,.05);
+}
+#budgetRange::-webkit-slider-runnable-track{ height:1px; background:transparent; }
+.range-line{ width:min(640px, 60vw); height:1px; background:#111; margin-top:-12px; }
+
+/* === STEP 3 === */
+.form-lines{ display:grid; gap: clamp(24px, 3vw, 40px); }
+.line{ display:grid; grid-template-columns:auto 1fr; align-items:end; gap: clamp(12px, 2.6vw, 24px); }
+.line .prompt{ font:400 clamp(28px, 4.2vw, 48px)/1.1 'Outfit', Inter, system-ui; white-space:nowrap; }
+.line input{
+  border:0; border-bottom:1.5px solid #bfbfbf; padding:12px 6px 10px;
+  font:400 clamp(20px, 2.6vw, 32px)/1.1 Inter, system-ui; color:#111; outline:none; width:100%;
+}
+.line input::placeholder{ color:#c7c7c7 }
+.line input:focus{ border-color:#111; box-shadow:0 6px 0 -5px #111; }
+
+/* CTAs */
+.wizard-cta{ display:flex; align-items:center; gap:22px; margin-top: clamp(36px, 5vw, 56px); }
+.btn-next{
+  display:inline-flex; align-items:center; gap:12px; padding:18px 28px; border-radius:999px;
+  text-decoration:none; border:1.5px solid #111; color:#111; background:#fff; cursor:pointer; font-weight:500;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-next:hover{ transform: translateY(-1px); background:#111; color:#fff; }
+.btn-next .arrow{ display:inline-grid; place-items:center; width:28px; height:28px; border-radius:999px; border:1.3px solid currentColor; }
+.step-indicator{ font-size: clamp(16px, 1.8vw, 18px); color:#111; }
+
+/* Subtle bottom vignette */
+.bottom-glow{
+  position:fixed; left:50%; bottom:-40px; transform:translateX(-50%);
+  width:min(900px, 80vw); height:120px;
+  background: radial-gradient(60% 120% at 50% 0%, rgba(0,0,0,.12), transparent 70%);
+  pointer-events:none;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .twocol{ grid-template-columns:1fr; }
+  .range-line, #budgetRange{ width:100%; max-width:640px; }
+}

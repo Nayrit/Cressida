@@ -1,0 +1,96 @@
+/* Page-specific layout only. No header/navbar overrides so it matches index.html exactly. */
+
+/* === Contact hero === */
+.contact-hero{
+  position:relative;
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;      /* center vertically */
+  align-items:center;          /* center horizontally */
+  text-align:center;
+  padding: 0 20px;
+  isolation:isolate;
+}
+
+/* Centered title block */
+.contact-inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 0 36px;
+}
+
+/* Title — Outfit + white */
+.contact-title{
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: .95;
+  font-size: clamp(44px, 10vw, 160px);
+  color: #fff;
+}
+
+/* Bottom row (same row: left corner + centered CTA) */
+.contact-bottom{
+  position:absolute;
+  left:0; right:0; bottom: 30px;
+  display:flex;
+  justify-content:center;   /* centers CTA in the viewport */
+  align-items:flex-end;
+  padding: 0 20px;
+  z-index:3;
+}
+
+/* Positioning knobs for the bottom-left block */
+.contact-hero{
+  --email-left: 24px;     /* tweak these to move “Write To Us” */
+  --email-bottom: 10px;
+}
+
+/* Left corner text */
+.corner{
+  position:absolute;
+  font-size:14px; color:rgba(255,255,255,.9);
+}
+.corner.left{
+  left: var(--email-left);
+  bottom: var(--email-bottom);
+  text-align:left;
+}
+.corner .eyebrow{
+  margin-bottom:4px; font-size:13px; opacity:.85; font-family: 'Satoshi-Light', system-ui;
+}
+.corner a{ color:#fff; text-decoration:none; }
+.corner a:hover{ text-decoration:underline; }
+
+/* CTA centered at bottom */
+.cta{
+  display:inline-flex; align-items:center; gap:12px; padding:18px 28px; border-radius:999px;
+  border:1.6px solid rgba(231,236,255,.6); color:#fff; text-decoration:none; font-weight:500;
+  backdrop-filter: blur(6px) saturate(120%);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.cta:hover{ box-shadow:0 0 0 3px rgba(255,255,255,.08) inset; transform: translateY(-1px); }
+.cta .arrow{
+  display:inline-grid; place-items:center; width:28px; height:28px; border-radius:999px;
+  border:1.4px solid rgba(231,236,255,.6);
+}
+
+/* Keep lens the same size your main.js expects */
+#reveal-lens{ width: 220px; height: 220px; border-radius: 50%; }
+
+/* Footer sits above gradient */
+.footer{ position: relative; z-index: 20; }
+
+/* Responsive tidy-ups */
+@media (max-width: 900px){
+  .contact-title{ font-size: clamp(44px, 12vw, 100px); }
+  .contact-hero{ --email-left: 16px; --email-bottom: 8px; }
+}

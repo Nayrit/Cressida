@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Services — Cressida</title>
+  <meta name="description" content="Services by Cressida — where technology meets art to deliver brand, product, and growth outcomes." />
+
+  <!-- Dependencies you already use globally -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Your global stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Page layer -->
+  <link rel="stylesheet" href="services.css" />
+</head>
+
+<body class="services-page-colors">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Persistent gradient background (global) -->
+  <div class="gradient-bg" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="gradients-container">
+      <div class="g1"></div><div class="g2"></div><div class="g3"></div>
+      <div class="g4"></div><div class="g5"></div><div class="interactive"></div>
+    </div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header-container">
+    <a href="index.html" class="logo">
+      <img src="cressida.png" alt="Cressida logo" />
+    </a>
+
+    <button class="mobile-menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <nav class="navbar" aria-label="Primary">
+      <div class="nav-container" id="primary-nav">
+        <div class="nav-column">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link">Work</a>
+          <a href="services.html" class="nav-link active">Services</a>
+        </div>
+        <div class="nav-column">
+          <a href="team.html" class="nav-link">Team</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-column">
+          <a href="story.html" class="nav-link">Story</a>
+          <a href="inspiration.html" class="nav-link">Inspiration</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content-wrapper">
+    <!-- HERO (unchanged) -->
+    <section class="hero-section">
+      <div class="text-container">
+        <div class="english-layer">
+          <img src="english-text.png" alt="Where Technology Meets Art" class="text-image" />
+        </div>
+        <div class="japanese-layer">
+          <img src="japanese-text.png" alt="" class="text-image" aria-hidden="true" />
+        </div>
+      </div>
+
+      <!-- lens & cursor (global JS uses these) -->
+      <div id="reveal-lens"><div id="reveal-content"></div></div>
+      <div class="glass-cursor"></div>
+      <div class="clip-area"></div>
+      <div class="english-mask"></div>
+    </section>
+
+    <!-- BLACK PAGE — PART 1 (locked) -->
+    <section class="svc-intro">
+      <aside class="sticky-label" aria-hidden="true"><span>SERVICES</span></aside>
+      <div class="svc-intro__in">
+        <h2 class="intro-lede">
+          We help brands be their most inspiring selves.<br />
+          Own their quirks – their edge – their culture.<br />
+          Help them be confidently attractive. At home,<br />
+          and abroad.
+        </h2>
+      </div>
+    </section>
+
+    <!-- BLACK PAGE — PART 2 (locked, horizontal steps) -->
+    <section class="vision">
+      <aside class="sticky-label" aria-hidden="true"><span>OUR VISION</span></aside>
+      <div class="vision__in">
+        <div class="vision-steps">
+          <div class="vision-step reveal-right">
+            <div class="step-meta">
+              <span class="vision-n">01</span>
+              <h3 class="vision-title">IMMERSE</h3>
+            </div>
+            <p class="vision-copy">
+              Our goal is to fully understand each client’s business, audience, and environment. With interviews,
+              on-site observation, and competitive analysis, we build a deep understanding before we create.
+              Every brief is informed with the why of products we deliver.
+            </p>
+          </div>
+          <div class="vision-step reveal-right">
+            <div class="step-meta">
+              <span class="vision-n">02</span>
+              <h3 class="vision-title">ARCHITECT</h3>
+            </div>
+            <p class="vision-copy">
+              Our planning process turns research into decision frameworks to keep teams focused. We map journeys,
+              define KPIs, and translate this into sprints. The blueprint is shared so the work lands well before
+              code ships.
+            </p>
+          </div>
+          <div class="vision-step reveal-right">
+            <div class="step-meta">
+              <span class="vision-n">03</span>
+              <h3 class="vision-title">EXECUTE</h3>
+            </div>
+            <p class="vision-copy">
+              Our designers and engineers bring concepts to market with craft. We prototype, test, refine, and launch—
+              staying aligned with creative intent and business goals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARD BREAK -->
+    <div class="section-break" aria-hidden="true"></div>
+
+    <!-- WHITE SERVICES -->
+    <section class="svc-matrix" aria-labelledby="svc-matrix-heading">
+      <div class="svc-matrix__in">
+        <h2 id="svc-matrix-heading" class="visually-hidden">Our Services</h2>
+
+        <div class="svc-row">
+          <h3 class="svc-h underline-anim">Branding</h3>
+          <div class="svc-col">
+            <h4 class="svc-sub">Visual identity design</h4>
+            <ul class="svc-list">
+              <li>logo</li><li>color</li><li>palette</li><li>typography</li>
+            </ul>
+            <ul class="svc-list strong">
+              <li>Brand messaging</li><li>product design</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc-row">
+          <h3 class="svc-h underline-anim">Content &amp; Creative</h3>
+          <div class="svc-col">
+            <ul class="svc-list strong">
+              <li>Copywriting</li><li>Storytelling</li><li>Video production</li>
+              <li>Motion Graphics</li><li>3D modeling</li><li>Animation</li>
+              <li>Infographics</li><li>Data visualization</li><li>Interactive web experiences</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc-row">
+          <h3 class="svc-h underline-anim">SaaS Solutions</h3>
+          <div class="svc-col two">
+            <ul class="svc-list labeled">
+              <li><strong>HRM</strong><span>Human Resource Management systems</span></li>
+              <li><strong>LMS</strong><span>Learning Management Systems</span></li>
+              <li><strong>DMS</strong><span>Document Management Systems</span></li>
+              <li><strong>IMS</strong><span>Inventory Management Systems</span></li>
+              <li><strong>AMS</strong><span>Accounting &amp; Finance Management Software</span></li>
+              <li><strong>E-commerce Platforms</strong><span>Custom online store solutions</span></li>
+              <li><strong>Workflow Automation Tools</strong><span>Task &amp; process automation</span></li>
+              <li><strong>Booking &amp; Reservation Systems</strong><span>Hospitality, venues, appointments</span></li>
+              <li><strong>Marketing Automation Tools</strong><span>Email, SMS, and funnel automation</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="svc-row svc-row--last">
+          <h3 class="svc-h underline-anim">Marketing &amp; Growth</h3>
+          <div class="svc-col">
+            <ul class="svc-list strong">
+              <li>Website design &amp; development</li>
+              <li>Social media branding &amp; management</li>
+              <li>Paid advertising campaigns <span class="light">Google, Meta</span></li>
+              <li>Email marketing automation</li>
+            </ul>
+          </div>
+          <span class="diag" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL-PAGE CTA (same height as work.html hero) -->
+    <section class="svc-cta">
+      <div class="svc-cta__in">
+        <a href="contact.html" class="cta-btn">CONNECT NOW</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Vendor libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- App scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+  <script src="services.js"></script>
+</body>
+</html>

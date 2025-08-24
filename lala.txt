@@ -1,0 +1,40 @@
+
+/* Panel 1 Colors - Green Shades */
+    --panel-1-bg1: #020024;
+    --panel-1-bg2: #1e6f0b;
+    --panel-1-c1: 174,202,174;
+    --panel-1-c2: 29,190,29;
+    --panel-1-c3: 176,252,69;
+    --panel-1-c4: 150,251,37;
+    --panel-1-c5: 187,253,45;
+    --panel-1-interactive: 187,253,45;
+
+    /* Panel 2 Colors - Green Shades */
+    --panel-2-bg1: #ffffff;
+    --panel-2-bg2: #0b7f6c;
+    --panel-2-c1: 174,202,174;
+    --panel-2-c2: 29,190,140;
+    --panel-2-c3: 176,252,140;
+    --panel-2-c4: 150,251,140;
+    --panel-2-c5: 187,253,140;
+    --panel-2-interactive: 187,253,140;
+
+    /* Panel 3 Colors - Green Shades */
+    --panel-3-bg1: #020024;
+    --panel-3-bg2: #dd9009;
+    --panel-3-c1: 174,202,174;
+    --panel-3-c2: 29,190,140;
+    --panel-3-c3: 176,252,140;
+    --panel-3-c4: 150,251,140;
+    --panel-3-c5: 187,253,140;
+    --panel-3-interactive: 187,253,140;
+
+    /* Panel 4 Colors - Black and White Shades */
+    --panel-4-bg1: #000000;
+    --panel-4-bg2: #333333;
+    --panel-4-c1: 150,150,150;
+    --panel-4-c2: 100,100,100;
+    --panel-4-c3: 200,200,200;
+    --panel-4-c4: 220,220,220;
+    --panel-4-c5: 240,240,240;
+    --panel-4-interactive: 255,255,255;

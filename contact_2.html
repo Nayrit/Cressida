@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Contact — Choose Your Path</title>
+  <meta name="description" content="Have a project in mind or a general inquiry? Tell Cressida how we can help." />
+
+  <!-- Vendor -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Global style -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Page style -->
+  <link rel="stylesheet" href="contact_2.css" />
+</head>
+
+<body class="services-page-colors">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Gradient background -->
+  <div class="gradient-bg" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="gradients-container">
+      <div class="g1"></div><div class="g2"></div><div class="g3"></div>
+      <div class="g4"></div><div class="g5"></div><div class="interactive"></div>
+    </div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="header-container">
+    <a href="index.html" class="logo">
+      <img src="cressida.png" alt="Cressida logo" />
+    </a>
+    <button class="mobile-menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+    <nav class="navbar" aria-label="Primary">
+      <div class="nav-container" id="primary-nav">
+        <div class="nav-column">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link">Work</a>
+          <a href="services.html" class="nav-link">Services</a>
+        </div>
+        <div class="nav-column">
+          <a href="team.html" class="nav-link">Team</a>
+          <a href="contact.html" class="nav-link active">Contact Us</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-column">
+          <a href="story.html" class="nav-link">Story</a>
+          <a href="inspiration.html" class="nav-link">Inspiration</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="contact2-wrapper">
+    <!-- Close/back button -->
+    
+
+    <!-- Two elegant cards -->
+    <section class="cards">
+      <article class="card card--left">
+        <h2 class="card-title">Have a Project in<br>Mind?</h2>
+        <a class="card-cta" href="get-started.html">
+          <span>Get Started</span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+
+      <article class="card card--right">
+        <h2 class="card-title">Nope! I have a<br>General Inquiry.</h2>
+        <a class="card-cta" href="mailto:connect@co.design?subject=General%20Inquiry">
+          <span>Send Query</span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </article>
+    </section>
+
+    <!-- Cursor/lens -->
+    <div id="reveal-lens"><div id="reveal-content"></div></div>
+    <div class="glass-cursor"></div>
+    <div class="clip-area"></div>
+    <div class="english-mask"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About Cressida</h3>
+        <p>Where technology meets art. We craft digital experiences that are bold, human, and effective.</p>
+        <div class="social-icons">
+          <a class="social-link" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a class="social-link" href="#" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+          <a class="social-link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="social-link" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a class="footer-link" href="work.html">Work</a>
+        <a class="footer-link" href="services.html">Services</a>
+        <a class="footer-link" href="team.html">Team</a>
+        <a class="footer-link" href="blog.html">Blog</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <p>Email: <a class="footer-link" href="mailto:connect@co.design">connect@co.design</a></p>
+        <p><a class="footer-link" href="contact.html">Contact Page</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> Cressida. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+  <script src="contact_2.js"></script>
+</body>
+</html>

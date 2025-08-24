@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Cressida — Where Technology Meets Art</title>
+  <meta name="description" content="Cressida is a creative studio where technology and art converge to craft striking digital experiences." />
+
+  <!-- Social sharing (customize when deploying) -->
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:title" content="Cressida — Where Technology Meets Art">
+  <meta property="og:description" content="We craft unique digital experiences that bring your vision to reality.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="services-page-colors">
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Persistent gradient background -->
+  <div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0  
+                    0 1 0 0 0  
+                    0 0 1 0 0  
+                    0 0 0 18 -8" result="goo" />
+          <feBlend in="SourceGraphic" in2="goo" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="gradients-container">
+      <div class="g1"></div>
+      <div class="g2"></div>
+      <div class="g3"></div>
+      <div class="g4"></div>
+      <div class="g5"></div>
+      <div class="interactive"></div>
+    </div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="header-container">
+    <a href="index.html" class="logo">
+      <img src="cressida.png" alt="Cressida logo">
+    </a>
+
+    <!-- Accessible mobile menu toggle -->
+    <button class="mobile-menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <nav class="navbar" aria-label="Primary">
+      <div class="nav-container" id="primary-nav" hidden>
+        <div class="nav-column">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link">Work</a>
+          <a href="services.html" class="nav-link">Services</a>
+        </div>
+        <div class="nav-column">
+          <a href="team.html" class="nav-link">Team</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+        </div>
+        <div class="nav-column">
+          <a href="story.html" class="nav-link">Story</a>
+          <a href="inspiration.html" class="nav-link">Inspiration</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="main-content-wrapper">
+    <!-- Hero with dual-language reveal -->
+    <section class="hero-section">
+      <div class="text-container">
+        <div class="english-layer">
+          <img src="english-text.png" alt="Where Technology Meets Art" class="text-image">
+        </div>
+        <!-- Hidden source for the lens reveal -->
+        <div class="japanese-layer">
+          <img src="japanese-text.png" alt="" class="text-image" aria-hidden="true">
+        </div>
+      </div>
+    </section>
+
+    <!-- Horizontal projects (desktop) -->
+    <section class="projects-section-horizontal">
+      <div class="projects-track">
+        <div class="project-panel" data-panel-id="1">
+          <div class="project-content">
+            <img src="images/circular1.png" alt="Plant Affairs — visual identity"
+                 loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600';">
+            <div class="project-details">
+              <h3>Plant Affairs</h3>
+              <p>A stunning visual identity for a luxury brand.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-panel" data-panel-id="2">
+          <div class="project-content">
+            <img src="images/tri.png" alt="Trimatrik — interactive web experience"
+                 loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600';">
+            <div class="project-details">
+              <h3>Trimatrik</h3>
+              <p>An interactive web experience for a tech startup.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-panel" data-panel-id="3">
+          <div class="project-content">
+            <img src="images/circular2.png" alt="Atomomade — community mobile app"
+                 loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600';">
+            <div class="project-details">
+              <h3>Atomomade</h3>
+              <p>A mobile application that connects communities.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-panel" data-panel-id="4">
+          <div class="project-content">
+            <img src="images/spax.png" alt="Spax — UX-focused e-commerce platform"
+                 loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600';">
+            <div class="project-details">
+              <h3>Spax</h3>
+              <p>An e-commerce platform with a focus on user experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>About Cressida</h3>
+          <p>We are a creative agency where technology and art converge. We craft unique digital experiences that bring your vision to reality.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="work.html" class="footer-link">Work</a>
+          <a href="services.html" class="footer-link">Services</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Cressida. All Rights Reserved.
+      </div>
+    </footer>
+  </main>
+
+  <!-- Reveal lens (custom cursor) -->
+  <div id="reveal-lens">
+    <div id="reveal-content"></div>
+  </div>
+
+  <!-- JS (order matters: libs first, then main.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

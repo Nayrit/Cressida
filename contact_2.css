@@ -1,0 +1,112 @@
+.contact2-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:250px 24px 80px; /* push cards ~30px further down */
+  position:relative;
+  isolation:isolate;
+}
+
+/* Make sure overlay UI never blocks clicks anywhere on this page */
+#reveal-lens,
+.glass-cursor,
+.clip-area,
+.english-mask{
+  pointer-events: none !important;
+}
+
+/* Close Button — bigger, clickable, always on top */
+.close-btn{
+  position:fixed; top:18px; right:18px;
+  width:64px; height:64px; border-radius:50%;
+  display:grid; place-items:center;
+  border:1.8px solid rgba(255,255,255,.55);
+  color:#fff; text-decoration:none;
+  font-size:100px;                /* bigger × */
+  line-height:1;                 /* tighten cross box */
+  z-index:30;                  /* above gradient, navbar, lenses */
+  backdrop-filter: blur(10px) saturate(120%);
+  background: rgba(0,0,0,.22);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  cursor:pointer !important;     /* force pointer even if body hides cursor */
+}
+.close-btn:hover{
+  transform: scale(1.04);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.12) inset;
+  background: rgba(0,0,0,.30);
+  border-color:#fff;
+}
+
+/* Card Layout */
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  width:100%;
+  max-width:1300px;
+}
+
+/* Card Style */
+.card{
+  position:relative;
+  padding:60px 48px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(20px) saturate(150%);
+  color:#fff;
+  text-align:left;
+  overflow:hidden;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+/* Decorative glow */
+.card::before{
+  content:"";
+  position:absolute; inset:-50px;
+  background: radial-gradient(circle at top left, rgba(120,160,255,.15), transparent 70%),
+              radial-gradient(circle at bottom right, rgba(255,100,200,.15), transparent 70%);
+  z-index:0;
+}
+.card *{ position:relative; z-index:1; }
+
+/* Card Text */
+.card-title{
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  font-size: clamp(32px, 4.5vw, 72px);
+  margin-bottom:40px;
+  line-height:1.1;
+}
+
+/* CTA */
+.card-cta{
+  display:inline-flex; align-items:center; gap:12px;
+  padding:16px 28px;
+  border:1.4px solid rgba(255,255,255,.5);
+  border-radius:999px;
+  color:#fff; text-decoration:none;
+  font-weight:500;
+  backdrop-filter: blur(6px);
+  transition:all .2s ease;
+}
+.card-cta .arrow{
+  border:1.2px solid rgba(255,255,255,.5);
+  border-radius:50%;
+  width:26px; height:26px; display:grid; place-items:center;
+}
+.card-cta:hover{ background:rgba(255,255,255,.08); border-color:#fff; }
+
+/* Responsive */
+@media(max-width:900px){
+  .cards{ grid-template-columns:1fr; gap:32px; }
+  .card{ text-align:center; }
+}
+
+/* Footer sits above background */
+.footer{ position:relative; z-index:30; margin-top:80px; }

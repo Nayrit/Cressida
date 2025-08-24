@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Start a Project — Cressida</title>
+  <meta name="description" content="Tell us about your project in a few quick steps." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="get_started.css" />
+</head>
+<body>
+  <main id="main" class="wizard-shell">
+    <!-- Close (back to contact_2 page) -->
+    <a href="contact_2.html" class="close-x" aria-label="Back">
+      <span aria-hidden="true">×</span>
+    </a>
+
+    <!-- STEP 1 -->
+    <section class="wizard" data-step="1" aria-labelledby="s1h">
+      <div class="wizard-in">
+        <h2 id="s1h" class="h-eyebrow">Select the services that best suit your needs</h2>
+
+        <div class="service-grid">
+          <button class="service bigline" data-value="Branding">Branding</button>
+          <button class="service bigline" data-value="Creative Production">Creative Production</button>
+          <button class="service bigline" data-value="Marketing & Promotions">Marketing & Promotions</button>
+          <button class="service bigline" data-value="Website & Mobile Apps">Website & Mobile Apps</button>
+        </div>
+
+        <div class="wizard-cta">
+          <a class="btn-next" href="#" data-next>Next <span class="arrow">→</span></a>
+          <span class="step-indicator"><b>1</b> / 3</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="wizard" data-step="2" aria-labelledby="s2h" hidden>
+      <div class="wizard-in">
+        <div class="twocol">
+          <div class="col">
+            <h2 id="s2h" class="h-eyebrow">Do you have any timeline in mind? (if any)</h2>
+
+            <div class="choice-list">
+              <label class="choice">
+                <input type="radio" name="timeline" value="> 3 months" checked>
+                <span class="opt">More than 3 Months</span>
+              </label>
+
+              <label class="choice dim">
+                <input type="radio" name="timeline" value="1–3 months">
+                <span class="opt">1 to 3 Months</span>
+              </label>
+
+              <label class="choice dim">
+                <input type="radio" name="timeline" value="< 1 month">
+                <span class="opt">Less than 1 Month</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="col">
+            <h2 class="h-eyebrow">Awesome! Please share your project budget</h2>
+
+            <div class="budget-wrap">
+              <div class="budget-label">Within <span id="budgetNumber">$1,000,000</span></div>
+              <input id="budgetRange" type="range" min="10000" max="1000000" step="5000" value="1000000" />
+              <div class="range-line" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-cta">
+          <a class="btn-next" href="#" data-next>Next <span class="arrow">→</span></a>
+          <span class="step-indicator"><b>2</b> / 3</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="wizard" data-step="3" aria-labelledby="s3h" hidden>
+      <div class="wizard-in">
+        <h2 id="s3h" class="h-eyebrow">Almost there! Tell us more about you</h2>
+
+        <form id="wizardForm" class="form-lines" novalidate>
+          <label class="line">
+            <span class="prompt">I am</span>
+            <input type="text" name="name" placeholder="*Name" required>
+          </label>
+
+          <label class="line">
+            <span class="prompt">From</span>
+            <input type="text" name="org" placeholder="Organization">
+          </label>
+
+          <label class="line">
+            <span class="prompt">You can write to me at</span>
+            <input type="email" name="email" placeholder="*Email Address" required>
+          </label>
+
+          <label class="line">
+            <span class="prompt">Or call me at</span>
+            <input type="tel" name="phone" placeholder="Phone Number">
+          </label>
+
+          <div class="wizard-cta">
+            <button class="btn-next" type="submit">Finish <span class="arrow">→</span></button>
+            <span class="step-indicator"><b>3</b> / 3</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div class="bottom-glow" aria-hidden="true"></div>
+  </main>
+
+  <!-- Animation lib (optional, used for step entrance) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="get_started.js"></script>
+</body>
+</html>

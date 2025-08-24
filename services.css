@@ -1,0 +1,275 @@
+/* services.css */
+/* HERO unchanged. Black sections + white services layout + animations + full-page CTA. */
+/* Fix: sticky left headings never cover the right column. */
+
+/* ===== Shared black-page layout: left sticky rail + content ===== */
+.svc-intro,
+.vision{
+  display:grid;
+  grid-template-columns: 80px 1fr;  /* rail | content */
+  column-gap: 1.5rem;
+  position: relative;
+}
+
+/* ===== Black page 1 (Services intro) ===== */
+.svc-intro {
+  background: #121212;
+  color: #fff;
+  position: relative;
+  padding: 180px 40px 80px;
+  display: flex;              /* px-driven layout */
+  flex-direction: row;
+}
+.svc-intro > .sticky-label { flex: 0 0 60px; margin-right: 40px; }
+.svc-intro__in { flex: 1; max-width: 900px; margin: 0 auto; }
+
+/* ===== Black page 2 (Our Vision) ===== */
+.vision {
+  background: #0f0f0f;
+  color: #f1f1f1;
+  position: relative;
+  padding: 120px 40px 100px;
+  display: flex;              /* px-driven layout */
+  flex-direction: row;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.vision > .sticky-label { flex: 0 0 60px; margin-right: 40px; }
+.vision__in { flex: 1; max-width: 900px; margin: 0 auto; }
+
+/* Sticky rail text (black pages) */
+.sticky-label { position: sticky; top: 20px; height: 0; }
+.sticky-label span{
+  display:inline-block; writing-mode: horizontal-tb;
+  font-family:'Satoshi-Light', system-ui; font-weight:800;
+  font-size:20px; letter-spacing:.28em; color:#fff;
+}
+
+/* Proportional type (black sections) */
+.intro-lede{ margin:0; font-weight:900; line-height:1.4; font-size: clamp(1.4rem, 2.2vw + .6rem, 2.4rem); }
+.vision-n{ line-height:1; font-weight:900; letter-spacing:-.02em; color:#fff; font-size: clamp(2.4rem, 5.5vw, 4rem); }
+.vision-title{ margin:.25rem 0 0; text-transform:uppercase; font-weight:800; font-size: clamp(1.1rem, 1.3vw + .6rem, 1.7rem); }
+.vision-copy{ color:#d7d7d7; line-height:1.65; font-family:'Satoshi-Light', system-ui; font-size: clamp(.95rem, 1vw + .5rem, 1.05rem); }
+
+/* Vision horizontal steps */
+.vision-steps{ display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem; }
+.vision-step{ position:relative; padding:0 1rem; border-left:1px solid rgba(255,255,255,.12); }
+.vision-step:first-child{ border-left:0 }
+.step-meta{ display:flex; flex-direction:column; align-items:flex-start; margin-bottom:.75rem; }
+.vision-step::before{ content:''; position:absolute; top:-20px; left:0; width:12px; height:12px; border-radius:999px; background:#f1492f; }
+
+/* HARD BREAK */
+.section-break{ height:64px; background:#fff; position:relative; z-index:2 }
+
+/* ===== WHITE SECTION (wider, bigger, fills the right column) ===== */
+.svc-matrix{ background:#fff; color:#111; padding:108px 0 48px; }
+.svc-matrix__in{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+/* Two-column row: big left sticky title + right content */
+.svc-row{
+  position: relative;
+  display: grid;
+  grid-template-columns: 500px 1fr;  /* wider rail; big right area */
+  gap: 64px;
+  padding: 72px 0;
+  border-bottom: 1px solid #eee;
+  align-items: start;
+}
+.svc-row--last{ border-bottom:0; }
+
+/* RIGHT COLUMN ALWAYS ABOVE LEFT: */
+.svc-col, .svc-col.two{
+  position: relative;
+  z-index: 2;          /* right side above left sticky */
+  max-width: none;
+  width: 100%;
+}
+
+/* Sticky left rail heading – underline anim with background gradient (no overlay) */
+.svc-h{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  margin: 0;
+  padding-bottom: 14px;
+
+  background: transparent;   /* no white box */
+  z-index: 1;                /* below .svc-col (which is z-index:2) */
+  pointer-events: none;      /* never intercept */
+
+  font-weight: 900; letter-spacing:.01em; line-height:1.05;
+  font-size: clamp(2.4rem, 2vw + 1.6rem, 3.2rem);
+
+  /* underline progress driven by JS */
+  --u: 0;
+  background-image: linear-gradient(#111, #111);
+  background-repeat: no-repeat;
+  background-position: left 100%;
+  background-size: calc(var(--u) * 100%) 3px;
+
+  contain: paint;
+  will-change: background-size;
+}
+.svc-h::after{ content: none; } /* no overlay pseudo-element */
+
+/* Subhead */
+.svc-sub{
+  font-weight: 800;
+  margin: .2rem 0 .75rem;
+  font-size: clamp(1.2rem, 1vw + .85rem, 1.4rem);
+}
+
+/* Single-column lists, larger and comfy */
+.svc-list{
+  list-style:none; margin:0 0 18px 0; padding:0;
+  display:grid; grid-template-columns: 1fr; gap:10px 18px;
+}
+.svc-list li{
+  font-family:'Satoshi-Light', system-ui;
+  line-height: 1.28;
+  font-size: clamp(1.1rem, .95vw + .7rem, 1.25rem);
+  transform: translateY(10px);    /* anime.js start */
+  opacity: 0;
+}
+.svc-list.strong li{ font-weight:800; }
+
+/* Branding row fine-tuning */
+.svc-matrix__in > .svc-row:nth-of-type(1) .svc-list:not(.strong){
+  gap:4px 0;
+}
+.svc-matrix__in > .svc-row:nth-of-type(1) .svc-list:not(.strong) li{
+  font-size: clamp(.95rem, .6vw + .6rem, 1.05rem);
+  color:#3f3f3f;
+}
+.svc-matrix__in > .svc-row:nth-of-type(1) .svc-list.strong{
+  margin-top: 22px;
+}
+.svc-matrix__in > .svc-row:nth-of-type(1) .svc-list.strong li{
+  font-size: clamp(1.2rem, 1vw + .8rem, 1.45rem);
+  line-height:1.2;
+}
+
+/* Content & Creative row */
+.svc-matrix__in > .svc-row:nth-of-type(2) .svc-list{ gap: 8px 0; }
+.svc-matrix__in > .svc-row:nth-of-type(2) .svc-list.strong li{
+  font-weight:800;
+  font-size: clamp(1.15rem, 1vw + .8rem, 1.35rem);
+  line-height:1.22;
+}
+
+/* SaaS labeled list */
+.svc-list.labeled{ grid-template-columns: 1fr; gap: 16px 0; }
+.svc-list.labeled li{ display:grid; grid-template-columns: 1fr; }
+.svc-list.labeled strong{
+  display:block; font-weight:800;
+  font-size: clamp(1.2rem, 1vw + .85rem, 1.45rem);
+  line-height:1.18;
+}
+.svc-list.labeled span{
+  display:block; margin-top:6px; font-size: clamp(1rem, .8vw + .7rem, 1.1rem);
+  color:#5a5a5a; line-height:1.26;
+}
+
+/* Last-row accent dashes */
+.svc-row--last .diag{
+  position:absolute; right:140px; top:-30px; width:1px; height:180px;
+  background-image:linear-gradient(#222 50%, rgba(0,0,0,0) 0%);
+  background-size:1px 8px; background-repeat:repeat-y;
+  transform:rotate(-20deg); transform-origin:top right;
+}
+
+/* ===== CTA full-page (same feel as hero) ===== */
+.svc-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #111, #222);
+  color: #fff;
+  text-align: center;
+}
+.svc-cta__in { position: relative; z-index: 1; }
+.cta-btn {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: .08em;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 800;
+  border-radius: 8px;
+  transition: all .3s ease;
+}
+.cta-btn:hover { background:#fff; color:#111; transform: scale(1.05); }
+
+/* ===== Animation helper classes ===== */
+.reveal-up { opacity:0; transform: translateY(24px); will-change: transform, opacity; }
+.reveal-right { opacity:0; transform: translateX(24px); will-change: transform, opacity; }
+.underline-anim { --u: 0; }
+.visually-hidden{
+  position:absolute !important; height:1px; width:1px; overflow:hidden;
+  clip:rect(1px,1px,1px,1px); white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px){
+  .svc-row {
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+  }
+  .svc-matrix__in {
+    padding: 0 32px;
+    max-width: 1400px;
+  }
+}
+
+@media (max-width: 991.98px){
+  /* black sections keep */
+  .svc-intro, .vision { grid-template-columns: 40px 1fr; }
+  .vision-steps { grid-template-columns: 1fr; gap: 2rem; }
+  .vision-step {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding-top: 2rem;
+  }
+  .vision-step:first-child { border-top: 0; }
+  .vision-step::before { left: -20px; top: 0; }
+  .svc-intro__in, .vision__in { padding-left: .25rem; }
+
+  /* white section */
+  .svc-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 56px 0;
+  }
+  .svc-h {
+    position: static;
+    background: transparent;
+    font-size: clamp(1.9rem, 1.8vw + 1rem, 2.4rem);
+    --u: 1;
+    background-size: 100% 3px;
+    pointer-events: auto;
+  }
+  .svc-list li { transform: none; opacity: 1; }
+}
+
+@media (max-width: 639.98px){
+  .svc-intro, .vision { grid-template-columns: 1fr; }
+  .sticky-label { position: static; height:auto; margin-bottom: .5rem; }
+  .sticky-label span {
+    writing-mode: horizontal-tb; transform: none;
+    font-size: .8rem; letter-spacing: .28em; opacity: .85; display: inline-block; padding-left: .1rem;
+  }
+  .svc-intro { padding: 10rem 1rem 3rem; }
+  .vision { padding: 6rem 1rem 3rem; }
+  .svc-matrix { padding: 64px 0 32px; }
+  .svc-matrix__in { padding: 0 16px; }
+  .svc-row { padding: 40px 0; gap: 20px; }
+  .svc-list { grid-template-columns: 1fr; }
+}
